@@ -1,0 +1,28 @@
+import sys 
+
+if len(sys.argv) == 2:
+  key = sys.argv[1]
+  n = input()
+  n = n.upper()
+  letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  single_string = ""
+  for i in range(len(n)):
+    if n[i].isalpha():
+      single_string += n[i]
+  secret_word = ""
+  for i in range(len(single_string)):
+    index_val = letters.index(single_string[i]) + int(key)
+    secret_word += letters[index_val]
+  count = 0 
+  count_2 = 0 
+  for i in range(len(n)):
+    count += 1
+    if count == 6:
+      secret_word = secret_word[:i] + " "+ secret_word[i:]
+    count = 0
+    count_2 += 1
+    if count_2 == 10:
+      secret_word = secret_word[:i]+"\n"+secret_word[i:]
+      count_2 = 0
+      count -= 1
+  print(secret_word)
